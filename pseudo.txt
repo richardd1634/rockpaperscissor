@@ -1,0 +1,53 @@
+Rock paper scissor mini-game
+
+game{
+  playerScore = 0
+  computerScore = 0
+
+  for(from i = 0 to 4){
+    playerSelection = input("rock, paper or scissor")
+    computerSelection = computerPlay()
+    print(playRound(playerSelection, computerSelection))
+  }
+  print(gameSumary(playerScore, computerScore))
+}
+
+computerPlay{
+  options{"rock", "paper", scissor"}
+  index = random() * 3
+  return options[index]
+}
+
+playRound(playerSelection, computerSelection){
+  if(playerSelection == computerSelection){
+    return "draw!"
+  } else if(playerSelection == "rock" && computerSelection == "paper") {
+    computerScore++
+    return "you lose! paper beats rock"
+  } else if(playerSelection == "rock" && computerSelection == "scissor") {
+    playerScore++
+    return "you win! rock beats scissor"
+  } else if(playerSelection == "paper" && computerSelection == "scissor") {
+    computerScore++
+    return "you lose! scissor beats paper"
+  } else if(playerSelection == "paper" && computerSelection == "rock") {
+    playerScore++
+    return "you win! paper beats rock"
+  } else if(playerSelction == "scissor" && computerSelection == "rock") {
+    computerScore++
+    return "you lose! rock beats scissor"
+  } else {
+    playerScore++
+    return "you win! scissor beats paper"
+  }
+}
+
+gameSumary(playerScore, computerScore) {
+  if(playerScore == computerScore){
+    return 'It's a draw! you = ${playerScore} vs computer = ${computerScore}'
+  } else if(playerScore < computerScore) {
+    return 'You lose! you = ${playerScore} vs computer = ${computerScore}'
+  } else {
+    return 'You win! you = ${playerScore} vs computer = ${computerScore}'
+  }
+}
