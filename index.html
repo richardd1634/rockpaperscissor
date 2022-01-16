@@ -15,10 +15,12 @@
 
       for(let i = 0; i < 5; i++){
         const playerSelection = prompt("Select rock, paper or scissor").toLowerCase();
-        const computerSelection = computerPlay();
+        const computerSelection = getComputerSelection();
         
         console.log(playRound(playerSelection, computerSelection));
       }
+
+      console.log(printResult(playerScore, computerScore));
 
       function playRound(playerSelection, computerSelection) {
         if(playerSelection === computerSelection) {
@@ -38,14 +40,28 @@
         } else if(playerSelection === "scissor" && computerSelection === "rock") {
           computerScore++;
           return "You lose! rock beats scissor";
-        } else {
+        } else if(playerSelection === "scissor" && computerSelection === "paper") {
           playerScore++;
           return "You win! scissor beats paper";
         }
       }
+
+      function printResult() {
+        if(playerScore === computerScore) {
+          return "It's a draw! " + printScore();
+        } else if(playerScore < computerScore) {
+          return "You lose! " + printScore();
+        } else {
+          return "You win! " + printScore();
+        }
+      }
+
+      function printScore() {
+        return `your won ${playerScore} times and the computer won ${computerScore} times`;
+      }
     }
 
-    function computerPlay() {
+    function getComputerSelection() {
       const options = ["rock", "paper", "scissor"];
       return options[Math.floor(Math.random() * 3)];
     }
