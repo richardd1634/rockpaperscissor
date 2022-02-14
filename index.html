@@ -1,70 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rock paper scissor</title>
-</head>
-<body>
-  <script>
-    game();
-
-    function game() {
-      let playerScore = 0, computerScore = 0;
-
-      for(let i = 0; i < 5; i++){
-        const playerSelection = prompt("Select rock, paper or scissor").toLowerCase();
-        const computerSelection = getComputerSelection();
-        
-        console.log(playRound(playerSelection, computerSelection));
-      }
-
-      console.log(printResult(playerScore, computerScore));
-
-      function playRound(playerSelection, computerSelection) {
-        if(playerSelection === computerSelection) {
-          return "Draw!";
-        } else if(playerSelection === "rock" && computerSelection === "paper") {
-          computerScore++;
-          return "You lose! paper beats rock";
-        } else if(playerSelection === "rock" && computerSelection === " scissor") {
-          playerScore++;
-          return "You win! rock beats scissor";
-        } else if(playerSelection === "paper" && computerSelection === "scissor") {
-          computerScore++;
-          return "You lose! scissor beats paper";
-        } else if(playerSelection === "paper" && computerSelection === "rock") {
-          playerScore++;
-          return "You win! paper beats rock";
-        } else if(playerSelection === "scissor" && computerSelection === "rock") {
-          computerScore++;
-          return "You lose! rock beats scissor";
-        } else if(playerSelection === "scissor" && computerSelection === "paper") {
-          playerScore++;
-          return "You win! scissor beats paper";
-        }
-      }
-
-      function printResult() {
-        if(playerScore === computerScore) {
-          return "It's a draw! " + printScore();
-        } else if(playerScore < computerScore) {
-          return "You lose! " + printScore();
-        } else {
-          return "You win! " + printScore();
-        }
-      }
-
-      function printScore() {
-        return `your won ${playerScore} times and the computer won ${computerScore} times`;
-      }
-    }
-
-    function getComputerSelection() {
-      const options = ["rock", "paper", "scissor"];
-      return options[Math.floor(Math.random() * 3)];
-    }
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock paper scissor</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="result-container">
+      <h2>Result: <span id="result"></span></h2>
+      <p>Score: <span id="score"></span></p>
+    </div>
+    <div id="btn-container">
+      <button>rock</button>
+      <button>paper</button>
+      <button>scissor</button>
+    </div>
+  </body>
 </html>
