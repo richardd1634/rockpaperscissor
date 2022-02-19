@@ -5,20 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock paper scissor</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
     <div id="main-container">
-      <div id="txt-container">
-        <h1>Play! Rock Paper Scissor</h1>
-        <h2>Result: <span id="result"></span></h2>
-        <p>Score: <span id="score"></span></p>
+      <header>
+        <h1>My Rock Paper Scissor mini game</h1>
+      </header>
+      <div id="content-wrap">
+        <div id="card-container">
+          <div class="player-card">
+            <img src="img/human.jpeg" alt="" class="portrait" />
+            <h4 class="player-name">Player 1</h4>
+            <p class="score">Points: <span id="player-score">0</span></p>
+            <div id="btn-container">
+              <button id="btn-rock" class="btn-player">
+                <img src="img/rock2.jpeg" alt="rock" />
+              </button>
+              <button id="btn-paper" class="btn-player">
+                <img src="img/paper2.jpeg" alt="paper" />
+              </button>
+              <button id="btn-scissor" class="btn-player">
+                <img src="img/scissor2.jpeg" alt="scissor" />
+              </button>
+            </div>
+          </div>
+          <div id="center">
+            <h2>VS</h2>
+            <button id="play-again" disabled>Play again?</button>
+          </div>
+          <div class="player-card">
+            <img src="img/computer.jpeg" alt="" class="portrait" />
+            <h4 class="player-name">Computer</h4>
+            <p class="score">Points: <span id="computer-score">0</span></p>
+            <img src="" alt="" id="computer-play" />
+          </div>
+        </div>
+        <div id="result-container">
+          <h2>Result: <span id="result"></span></h2>
+        </div>
       </div>
-      <div id="btn-container">
-        <button id="btn-rock">rock</button>
-        <button id="btn-paper">paper</button>
-        <button id="btn-scissor">scissor</button>
-      </div>
+      <footer>Created by @richardd1634 2022</footer>
     </div>
   </body>
 </html>

@@ -2,19 +2,24 @@ game();
 
 function game() {
   let playerScore = 0,
-    computerScore = 0,
-    draws = 0;
+    computerScore = 0;
 
   const result = document.querySelector("#result");
-  const score = document.querySelector("#score");
-  const btns = document.querySelectorAll("button");
+  const btns = document.querySelectorAll(".btn-player");
+  const compuPlay = document.querySelector("#computer-play");
+  const playAgainBtn = document.querySelector("#play-again");
+  const playerPoints = document.querySelector("#player-score");
+  const computerPoints = document.querySelector("#computer-score");
 
   btns.forEach((btn) => {
-    btn.addEventListener("click", (event) => playRound(event.target.id));
+    btn.addEventListener("click", (event) => playRound(event.currentTarget.id));
   });
+
+  playAgainBtn.addEventListener("click", () => resetGame());
 
   function playRound(playerSelection) {
     const computerSelection = getComputerSelection();
+    compuPlay.src = "img/" + computerSelection + "2.jpeg";
 
     if (playerSelection === "btn-rock" && computerSelection === "paper") {
       computerScore++;
@@ -50,33 +55,52 @@ function game() {
       playerScore++;
       result.textContent = "You win! scissor beats paper";
     } else {
-      draws++;
       result.textContent = "Draw!";
     }
-    score.textContent = printScore();
+    printScore();
     checkWinner();
   }
 
   function checkWinner() {
     if (playerScore === 5) {
-      alert("Congratulations! You win this round");
-      resetGame();
+      result.textContent = "Congratulations! You win this round";
+      disableBtns();
     } else if (computerScore === 5) {
-      alert("Sorry, you lose this round");
-      resetGame();
+      result.textContent = "Sorry, you lose this round";
+      disableBtns();
     }
   }
 
   function resetGame() {
     playerScore = 0;
     computerScore = 0;
-    draws = 0;
     result.textContent = "";
-    score.textContent = "";
+    compuPlay.src = "";
+    playerPoints.textContent = "";
+    computerPoints.textContent = "";
+    enableBtns();
+  }
+
+  function enableBtns() {
+    btns.forEach((btn) => {
+      btn.disabled = false;
+    });
+
+    playAgainBtn.disabled = true;
+  }
+
+  function disableBtns() {
+    btns.forEach((btn) => {
+      btn.disabled = true;
+    });
+
+    playAgainBtn.disabled = false;
   }
 
   function printScore() {
-    return `Wins: ${playerScore} - Loses: ${computerScore} - Draws: ${draws}`;
+    playerPoints.textContent = playerScore;
+    computerPoints.textContent = computerScore;
+    return;
   }
 }
 
